@@ -12,17 +12,13 @@ source:
   target_directory: sqlcl
 
 build:
-  number: 0
+  number: 1
   noarch: generic
   script:
     - mkdir -p $PREFIX/opt/sqlcl
     - cp -r sqlcl/* $PREFIX/opt/sqlcl/
     - mkdir -p $PREFIX/bin
-    - |
-      cat > $PREFIX/bin/sql << 'EOF'
-      #!/bin/bash
-      exec "$PREFIX/opt/sqlcl/bin/sql" "$@"
-      EOF
+    - cp $RECIPE_DIR/sql $PREFIX/bin/sql
     - chmod +x $PREFIX/bin/sql
     - chmod +x $PREFIX/opt/sqlcl/bin/sql
 
